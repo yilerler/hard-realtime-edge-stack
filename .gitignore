@@ -1,0 +1,16 @@
+# Kernel module compiled files
+*.o
+*.ko
+*.mod.c
+*.mod
+*.order
+*.symvers
+.tmp_versions/
+.*.cmd
+
+# Node.js
+node_modules/
+
+# Logs & Data
+*.csv
+*.log

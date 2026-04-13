@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V4.4 Chaos Engine Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="connection-banner" class="banner disconnected">
+        <h2 id="conn-status-text">⏳ 等待霧區網路連線 (Waiting for Fog Network)...</h2>
+    </div>
+
+    <div class="dashboard-container">
+        <header>
+            <h1>🛡️ Edge Chaos Engine War Room</h1>
+            <p>泛用型邊緣防禦與物理混沌監控面板 (Hard Real-Time Stack V4.4)</p>
+        </header>
+
+        <main>
+            <div class="card status-card">
+                <h3>中樞攔截狀態 (Interlock Status)</h3>
+                <div id="system-status" class="status-badge normal">CONNECTING...</div>
+            </div>
+
+            <div class="card metrics-card">
+                <h3>即時物理遙測與系統治理 (Telemetry & Governance)</h3>
+                <div class="metric">
+                    <span class="label">探測距離 (Distance):</span>
+                    <span class="value distance-glow" id="distance-val">--- mm</span>
+                </div>
+                <div class="metric">
+                    <span class="label">🛡️ OT 攔截突波次數:</span>
+                    <span class="value" id="spikes-filtered-val" style="color: #58a6ff;">0 次</span>
+                </div>
+                <div class="metric">
+                    <span class="label">最後通訊 (Tick):</span>
+                    <span class="value timestamp" id="timestamp-val">---</span>
+                </div>
+            </div>
+                <div class="card log-card">
+                <h3>📜 異常事件稽核日誌 (Event Audit Trail)</h3>
+                <ul id="event-log-list" class="log-list">
+                    <li class="log-item system">等待訊號中...</li>
+                </ul>
+            </div>
+                <div class="metric">
+                    <span class="label">物理相位 (Phase):</span>
+                    <span class="value" id="physical-state-val">---</span>
+                </div>
+                <div class="metric">
+                    <span class="label">最後更新 (Tick):</span>
+                    <span class="value timestamp" id="timestamp-val">---</span>
+                </div>
+            </div>
+
+            <div id="sop-instruction" class="card danger-card hidden">
+                <h3>⚠️ 網路中斷防呆作業程序 (SOP)</h3>
+                <ol>
+                    <li>戰情室已失去與邊緣節點的連線。</li>
+                    <li><strong>請勿驚慌，不需手動拔除電源。</strong></li>
+                    <li>底層 Kernel Spinlock 仍會以微秒級速度自主防護機台。</li>
+                    <li>請聯絡廠務 IT 檢查 MQTT/WebSocket 網路服務。</li>
+                </ol>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
