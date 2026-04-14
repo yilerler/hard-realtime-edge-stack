@@ -23,18 +23,18 @@
 * **OT 控制面 (大腦與脊髓)：** 寫入 Linux Kernel。透過 `kthread` 以 1000Hz 頻率運作，直接在底層過濾 EMI 突波並執行實體斷電，完全不受上層作業系統排程干擾。
 * **IT 觀測面 (外交官)：** 透過定義嚴謹的 ABI (Application Binary Interface) 記憶體合約，Node.js 降級為純粹的觀測者，僅負責讀取記憶體狀態並推播至 WebSocket。
 
-### 系統核心架構 (IT/OT 解耦)
+### 🏗️ 系統核心架構 (IT/OT 解耦)
 
 ```mermaid
 graph TD
-    subgraph OT_Layer [Kernel Space (OT 物理防禦層)]
-        CE[Chaos Engine kthread] -- 1000Hz --> SM[State Machine]
-        SM -- Spinlock --> ABI[(ABI Memory Contract)]
+    subgraph OT_Layer ["Kernel Space (OT 物理防禦層)"]
+        CE["Chaos Engine kthread"] -- "1000Hz" --> SM["State Machine"]
+        SM -- "Spinlock" --> ABI[("ABI Memory Contract")]
     end
 
-    subgraph IT_Layer [User Space (IT 觀測層)]
-        NODE[Node.js adapter.js] -- 100ms Read --> ABI
-        NODE -- WebSocket --> UI[Dashboard WebUI]
+    subgraph IT_Layer ["User Space (IT 觀測層)"]
+        NODE["Node.js adapter.js"] -- "100ms Read" --> ABI
+        NODE -- "WebSocket" --> UI["Dashboard WebUI"]
     end
 
     style OT_Layer fill:#f9f2f4,stroke:#d9534f,stroke-width:2px
