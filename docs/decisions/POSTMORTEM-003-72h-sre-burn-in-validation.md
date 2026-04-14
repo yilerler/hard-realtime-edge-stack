@@ -1,7 +1,7 @@
 # POSTMORTEM-003: 72 小時 SRE 燒機測試與 IT/OT 解耦架構驗證
 
 ## 1. 測試背景與動機 (Context & Motivation)
-在歷經 [POSTMORTEM-002](POSTMORTEM-002.md) 的上下文重構與 [ADR-006](ADR-006.md) 的 IT/OT 本質性解耦後，V5.0 系統已具備微秒級的硬即時防禦能力。然而，作為工業邊緣閘道器 (Edge Gateway)，系統必須具備長效無人值守 (Zero-touch) 的穩定性。
+在歷經 [POSTMORTEM-002](POSTMORTEM-002-io-blocking-and-kthread-migration.md) 的上下文重構與 [ADR-006](ADR-006-domain-decoupling-and-transition-to-infrastructure-stack.md) 的 IT/OT 本質性解耦後，V5.0 系統已具備微秒級的硬即時防禦能力。然而，作為工業邊緣閘道器 (Edge Gateway)，系統必須具備長效無人值守 (Zero-touch) 的穩定性。
 
 過去基於 User Space 的軟體架構，常因 Node.js 記憶體洩漏 (Memory Leak) 或日誌檔案塞爆 SD 卡，導致設備在部署數日後觸發 OOM (Out-Of-Memory) 或 I/O 窒息而死機。本測試旨在透過 72 小時連續極限壓測，驗證 V5.0 架構的長期可靠性。
 
