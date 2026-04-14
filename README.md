@@ -23,6 +23,23 @@
 * **OT 控制面 (大腦與脊髓)：** 寫入 Linux Kernel。透過 `kthread` 以 1000Hz 頻率運作，直接在底層過濾 EMI 突波並執行實體斷電，完全不受上層作業系統排程干擾。
 * **IT 觀測面 (外交官)：** 透過定義嚴謹的 ABI (Application Binary Interface) 記憶體合約，Node.js 降級為純粹的觀測者，僅負責讀取記憶體狀態並推播至 WebSocket。
 
+### 系統核心架構 (IT/OT 解耦)
+
+```mermaid
+graph TD
+    subgraph OT_Layer [Kernel Space (OT 物理防禦層)]
+        CE[Chaos Engine kthread] -- 1000Hz --> SM[State Machine]
+        SM -- Spinlock --> ABI[(ABI Memory Contract)]
+    end
+
+    subgraph IT_Layer [User Space (IT 觀測層)]
+        NODE[Node.js adapter.js] -- 100ms Read --> ABI
+        NODE -- WebSocket --> UI[Dashboard WebUI]
+    end
+
+    style OT_Layer fill:#f9f2f4,stroke:#d9534f,stroke-width:2px
+    style IT_Layer fill:#e8f4f8,stroke:#5bc0de,stroke-width:2px
+```
 ---
 
 ## 🚀 Core Technical Highlights (核心技術突破)
@@ -68,4 +85,4 @@ hard-realtime-edge-stack/
 └── docs/
     └── ADRs/              # [架構文檔] ADR-001 ~ ADR-007 架構決策演進史
 ```
-**💡 架構師備註：** 本專案根目錄下 docs/ADRs 完整收錄了從早期 V1.0 應用層架構，一路重構至 V5.0 核心底層的思維演進史 (包含踩過的坑與決策轉折)。強烈建議從 ADR-005 開始閱讀，以理解底層記憶體機制的設計初衷。
+**💡備註：** 本專案根目錄下 docs/ADRs 完整收錄了從早期 V1.0 應用層架構，一路重構至 V5.0 核心底層的思維演進史 (包含踩過的坑與決策轉折)。強烈建議從 ADR-005 開始閱讀，以理解底層記憶體機制的設計初衷。
