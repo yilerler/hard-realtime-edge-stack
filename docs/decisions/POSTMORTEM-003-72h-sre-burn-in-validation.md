@@ -24,7 +24,7 @@
 
 ### 3.3 磁碟 I/O：防禦日誌窒息
 * **數據特徵：** `Disk_Usage` 72 小時穩定錨定於 10%。
-* **架構驗證：** 證實 [ADR-007](docs/decisions/ADR-007-system-auto-recovery-and-industrial-hardening.md) 導入的 Systemd Persistent Journal 策略生效。內建的 Log Rotation (日誌輪替) 成功壓制了 Kernel 每秒千次的高頻警告，防止了檔案系統滿載導致的致命性崩潰。
+* **架構驗證：** 證實 [ADR-007](ADR-007-system-auto-recovery-and-industrial-hardening.md) 導入的 Systemd Persistent Journal 策略生效。內建的 Log Rotation (日誌輪替) 成功壓制了 Kernel 每秒千次的高頻警告，防止了檔案系統滿載導致的致命性崩潰。
 
 ## 4. 最終結論 (Final Verdict & Resolution)
 本測試證實，**V5.0 架構已正式跨越「實驗室原型 (PoC)」，達到「工業級量產部署 (Production-Ready)」標準。**
