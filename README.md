@@ -68,7 +68,7 @@ graph TD
 
 <div align="center">
   <img src="docs/Sys_Free_RAM_MB_Final.png" width="48%" alt="System Free RAM Trend" />
-  <img src="docs/Node_RAM_MB_Final.png" width="48%" alt="Node.js RAM Trend" />
+  <img src="docs/Node_RAM_MB＿Final.png" width="48%" alt="Node.js RAM Trend" />
 </div>
 
 > *▲ 封關遙測圖表 (含線性趨勢線)：左圖證實系統記憶體維持健康的 Page Cache 動態調度；右圖證實 Node.js V8 引擎在底層 I/O 承壓下仍能強制執行 Major GC，達成完美動態平衡。*
