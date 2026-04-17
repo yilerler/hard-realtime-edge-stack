@@ -64,10 +64,18 @@ graph TD
 
 ## 📊 Reliability & Telemetry (穩定度與遙測驗證)
 
-本架構已於 Raspberry Pi 5 平台上通過嚴苛的 **72 小時連續燒機測試 (72-hour Burn-in Test)**：
-* **Kernel 穩定度：** 歷經超過 2.5 億次 1000Hz 狀態機循環，維持 0 系統死鎖。
-* **記憶體健康度：** 透過背景 `monitor.sh` 遙測採樣證實，即使經過千萬次 WebSocket JSON 廣播，Node.js 中介層 (V8 Engine) 垃圾回收完美運作，實體記憶體常駐於 60MB 左右，**無任何 Memory Leak (記憶體洩漏) 跡象**。
-* **I/O 韌性：** 長期高頻日誌寫入未引發檔案系統阻塞，確保持續運轉安全性。
+本架構已於 Raspberry Pi 5 平台上通過嚴苛的 **96 小時連續燒機測試 (96-hour+ Burn-in Test)**：
+
+<div align="center">
+  <img src="docs/Sys_Free_RAM_MB_Final.png" width="48%" alt="System Free RAM Trend" />
+  <img src="docs/Node_RAM_MB_Final.png" width="48%" alt="Node.js RAM Trend" />
+</div>
+
+> *▲ 封關遙測圖表 (含線性趨勢線)：左圖證實系統記憶體維持健康的 Page Cache 動態調度；右圖證實 Node.js V8 引擎在底層 I/O 承壓下仍能強制執行 Major GC，達成完美動態平衡。*
+
+* **Kernel 穩定度：** 歷經超過 3 億次 1000Hz 狀態機循環，維持 0 系統死鎖，展現絕對的物理防禦力。
+* **記憶體健康度 (Zero Memory Leak)：** 透過背景遙測採樣與趨勢線 (Trendline) 統計證實，即便經歷千萬次 WebSocket 廣播，Node.js 記憶體基準線四天內漂移量小於 1MB，達成 **0% 記憶體洩漏**。
+* **I/O 韌性：** 長期高頻日誌寫入未引發檔案系統阻塞，磁碟使用率死守 10% 水平線，確保持續運轉的無人值守 (Zero-touch) 安全性。
 
 ---
 
